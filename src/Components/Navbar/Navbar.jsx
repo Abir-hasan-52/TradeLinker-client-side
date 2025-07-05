@@ -3,6 +3,16 @@ import { NavLink } from "react-router";
 
 const Navbar = () => {
   const links = [
+    <li className=" hover:bg-[#4FB3E8]">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : ""
+        }
+      >
+        Home
+      </NavLink>
+    </li>,
     <li className="  hover:bg-[#4FB3E8]">
       <NavLink
         to="/login"
@@ -28,7 +38,7 @@ const Navbar = () => {
   return (
     <div className="navbar  bg-[#1B365D] shadow-sm">
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown m-0">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +58,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-white text-[#333333	]  rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-white text-[#333333	]  rounded-box z-1 mt-3 w-52 p-2 shadow "
           >
             {links}
           </ul>
