@@ -6,7 +6,7 @@ const Login = () => {
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
         {/* Logo & Title */}
         <div className="mb-6 text-center">
-          <img src="/logo.png" alt="TradeLinker Logo" className="w-12 mx-auto mb-2" />
+          <img src="https://i.ibb.co/rK62cRcX/trade-linker-international-logo.jpg" alt="TradeLinker Logo" className="w-25 mx-auto mb-2" />
           <h2 className="text-3xl font-bold text-[#1B365D]">Welcome Back</h2>
           <p className="text-gray-500 text-sm">Login to your TradeLinker account</p>
         </div>

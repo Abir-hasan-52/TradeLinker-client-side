@@ -1,11 +1,19 @@
 import React from 'react';
 import Banner from './Banner';
+import WhyChooseUs from '../../Components/ExtraSections/WhyChooseUs';
+import FeaturedBrands from '../../Components/ExtraSections/FeaturedBrands';
 
 const Home = () => {
     return (
-        <div className='min-h-[calc(100vh-64px-452px)] bg-[#F0F4F8] flex justify-center items-center'>
+        <div className='min-h-[calc(100vh-64px-452px)] bg-[#F0F4F8]'>
             <section>
                 <Banner></Banner>
+            </section>
+            <section>
+                <WhyChooseUs></WhyChooseUs>
+            </section>
+            <section>
+                <FeaturedBrands></FeaturedBrands>
             </section>
         </div>
     );
