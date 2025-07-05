@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../../Contexts/AuthContext";
 
 const Navbar = () => {
+    const {name}= useContext(AuthContext)
+    ;
   const links = [
     <li className=" hover:bg-[#4FB3E8]">
       <NavLink
@@ -10,7 +13,8 @@ const Navbar = () => {
           isActive ? "font-bold underline text-[#4FB3E8]" : ""
         }
       >
-        Home
+        Home 
+        name: {name}
       </NavLink>
     </li>,
     <li className="  hover:bg-[#4FB3E8]">
