@@ -37,22 +37,42 @@ const Navbar = () => {
     </li>,
     <li className="  hover:bg-[#4FB3E8]">
       <NavLink
-        to="/login"
+        to="/All-Products"
         className={({ isActive }) =>
           isActive ? "font-bold underline text-[#4FB3E8]" : ""
         }
       >
-        Login
+        All Products
       </NavLink>
     </li>,
     <li className="  hover:bg-[#4FB3E8]">
       <NavLink
-        to="/register"
+        to="/add-products"
         className={({ isActive }) =>
           isActive ? "font-bold underline text-[#4FB3E8]" : ""
         }
       >
-        Register
+        Add Product
+      </NavLink>
+    </li>,
+    <li className="  hover:bg-[#4FB3E8]">
+      <NavLink
+        to="/my-products"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : ""
+        }
+      >
+        My Product
+      </NavLink>
+    </li>,
+    <li className="  hover:bg-[#4FB3E8]">
+      <NavLink
+        to="/cart"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : ""
+        }
+      >
+        Cart
       </NavLink>
     </li>,
   ];
