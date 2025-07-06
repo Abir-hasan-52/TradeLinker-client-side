@@ -1,10 +1,29 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-    const {name}= useContext(AuthContext)
-    ;
+  const { user, SignOutUser } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    SignOutUser()
+      .then(() => {
+        // Sign-out successful.
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign-out successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log("User signed out successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error("Error signing out:", error);
+      });
+  };
   const links = [
     <li className=" hover:bg-[#4FB3E8]">
       <NavLink
@@ -13,8 +32,7 @@ const Navbar = () => {
           isActive ? "font-bold underline text-[#4FB3E8]" : ""
         }
       >
-        Home 
-        name: {name}
+        Home
       </NavLink>
     </li>,
     <li className="  hover:bg-[#4FB3E8]">
@@ -34,7 +52,7 @@ const Navbar = () => {
           isActive ? "font-bold underline text-[#4FB3E8]" : ""
         }
       >
-          Register
+        Register
       </NavLink>
     </li>,
   ];
@@ -67,15 +85,53 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn hover:bg-[#4FB3E8] text-white btn-ghost text-xl">TradeLinks</a>
+        <a className="btn hover:bg-[#4FB3E8] text-white btn-ghost text-xl">
+          TradeLinks
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal text-white px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium transition-all
-">Button</a>
-      </div>
+      {user ? (
+        <>
+          <div className="navbar-end">
+            <Link
+              onClick={handleSignOut}
+              className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium transition-all
+"
+            >
+              LogOut
+            </Link>
+            <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+              <img
+                src={
+                  user.photoURL ||
+                  "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+                }
+                alt="User Avatar"
+                className="w-10 h-10 rounded-full ml-4"
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="navbar-end">
+            <Link
+              className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium transition-all
+"
+            >
+              SignIn
+            </Link>
+            <Link
+              className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium transition-all
+"
+            >
+              Register
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };
