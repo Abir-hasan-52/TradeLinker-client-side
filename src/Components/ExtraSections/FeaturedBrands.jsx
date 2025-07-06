@@ -30,7 +30,7 @@ const FeaturedBrands = () => {
           <img
             src="https://i.ibb.co/Hj9jZHG/panasonic-logo-png-seeklogo-105708.png"
             alt="Panasonic"
-            className="h-16 mx-auto grayscale hover:grayscale-0 transition duration-300"
+            className="h-20 mx-auto grayscale hover:grayscale-0 transition duration-300"
           />
           <img
             src="https://i.ibb.co/ccVMdrLY/png-transparent-philips-hd-logo-thumbnail.png"
@@ -40,7 +40,7 @@ const FeaturedBrands = () => {
           <img
             src="https://i.ibb.co/TMcpNXFG/whirlpool-logo-png-seeklogo-152594.png"
             alt="Whirlpool"
-            className="h-16 mx-auto grayscale hover:grayscale-0 transition duration-300"
+            className="h-20 mx-auto grayscale hover:grayscale-0 transition duration-300"
           />
         </div>
       </div>
