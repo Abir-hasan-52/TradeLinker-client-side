@@ -4,7 +4,7 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,6 +30,30 @@ const Login = () => {
         alert("Login failed: " + error.message);
       });
   };
+
+  //   signinWthGoogle function
+
+  const handleLogInWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User logged in with Google successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log("User logged in with Google successfully:", user);
+        // You can redirect or show a success message here
+      })
+      .catch((error) => {
+        console.error("Error logging in with Google:", error);
+        // Handle Google login error, e.g., show an error message
+        alert("Google login failed: " + error.message);
+      });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f0f4f8] to-[#cbd9ec] px-4 py-10">
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
@@ -96,8 +120,9 @@ const Login = () => {
         </div>
 
         {/* Google Button */}
-        <button
-          type="button"
+        <Link
+          to="/"
+          onClick={handleLogInWithGoogle}
           className="w-full border border-gray-300 py-2 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition"
         >
           <img
@@ -108,7 +133,7 @@ const Login = () => {
           <span className="text-sm font-medium text-gray-700">
             Continue with Google
           </span>
-        </button>
+        </Link>
 
         {/* Register Link */}
         <p className="mt-4 text-sm text-center text-gray-600">

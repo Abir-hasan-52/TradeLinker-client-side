@@ -117,13 +117,13 @@ const Navbar = () => {
       ) : (
         <>
           <div className="navbar-end">
-            <Link
+            <Link to="/login"
               className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium transition-all
 "
             >
               SignIn
             </Link>
-            <Link
+            <Link to="/register"
               className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium transition-all
 "
             >
