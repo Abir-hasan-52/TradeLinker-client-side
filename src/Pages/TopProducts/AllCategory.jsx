@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; 
 
 const AllCategory = () => {
-    
   const categories = [
   {
     name: "Electronics & Gadgets",
@@ -32,13 +31,12 @@ const AllCategory = () => {
     name: "Office Supplies & Stationery",
     image: "https://i.ibb.co/b5YWkKx1/shahjahan-brothers-pic-jpg1.jpg",
   },
-  // add more categories
+   
 ];
-    return (
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-            
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
       {categories.map((cat) => (
-        <Link key={cat.name} to={`/category/${encodeURIComponent(cat.name)}`}>
+        <Link key={cat.name} to={`/all-products/${encodeURIComponent(cat.name)}`}>
           <div className="shadow rounded overflow-hidden hover:shadow-lg transition">
             <img src={cat.image} alt={cat.name} className="w-full h-40 object-cover" />
             <div className="p-3 font-semibold text-center">{cat.name}</div>
@@ -46,7 +44,7 @@ const AllCategory = () => {
         </Link>
       ))}
     </div>
-    );
+  );
 };
 
 export default AllCategory;
