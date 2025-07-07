@@ -17,7 +17,7 @@ const MyProducts = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold">My Products</h2>
+      <h2 className="text-2xl font-bold text-center my-10 hover:underline ">My Products</h2>
       {products.length === 0 ? (
         <p>No products found.</p>
       ) : (

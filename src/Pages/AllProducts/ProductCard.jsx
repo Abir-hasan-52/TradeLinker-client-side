@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const ProductCard = ({ product }) => {
   const {
-    id,
+    _id,
     name,
     brandName,
     category,
@@ -44,7 +44,7 @@ const ProductCard = ({ product }) => {
 
       {/* Update Button */}
       <div className="mt-4">
-        <Link to={`/update-product/${id}`}>
+        <Link to={`/all-products/${_id}`}>
           <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition">
             Update
           </button>

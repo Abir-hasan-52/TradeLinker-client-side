@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const ProductsTable = ({ product }) => {
   return (
@@ -18,12 +19,12 @@ const ProductsTable = ({ product }) => {
       <td className="p-3">{product.main_quantity}</td>
       <td className="p-3">{product.min_selling_quantity}</td>
       <td className="p-3">
-        <a
-          href={`/update-product/${product._id}`}
+        <Link
+            to={`/all-products/${product._id}`}
           className="text-blue-600 hover:underline"
         >
           Update
-        </a>
+        </Link>
       </td>
     </tr>
   );

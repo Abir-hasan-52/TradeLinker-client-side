@@ -5,11 +5,11 @@ const MyProductCard = ({ product }) => {
   const {
     image,
     name,
-    brand,
+    brandName,
     category,
-    quantity,
-    minQuantity,
-    shortDesc,
+    main_quantity,
+    min_selling_quantity,
+    description,
     price,
     rating,
   } = product;
@@ -28,12 +28,12 @@ const MyProductCard = ({ product }) => {
       {/* Info */}
       <div className="flex-1">
         <h3 className="text-xl font-bold text-gray-800">{name}</h3>
-        <p className="text-sm text-gray-500 mb-1">Brand: <span className="font-medium">{brand}</span></p>
+        <p className="text-sm text-gray-500 mb-1">Brand: <span className="font-medium">{brandName}</span></p>
         <p className="text-sm text-gray-500 mb-1">Category: {category}</p>
         <p className="text-sm text-gray-500 mb-1">
-          Quantity: {quantity} | Minimum: {minQuantity}
+          Quantity: {main_quantity} | Minimum: {min_selling_quantity}
         </p>
-        <p className="text-sm text-gray-700 mt-2">{shortDesc}</p>
+        <p className="text-sm text-gray-700 mt-2">{description}</p>
 
         {/* Price and Rating */}
         <div className="mt-3 flex items-center justify-between">
