@@ -10,7 +10,7 @@ const TopProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-products?category=${categoryName}`)
+    fetch(`http://localhost:3000/category-products?category=${categoryName}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);  

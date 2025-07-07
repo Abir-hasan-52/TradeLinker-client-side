@@ -16,48 +16,34 @@ const router = createBrowserRouter([
     path: "/",
     Component: MainLayout,
     children: [
-      {
-        path: "/",
-        element: <Home></Home>,
-      },
+      { path: "/", element: <Home /> },
       {
         path: "/all-products",
-        element: <AllProducts></AllProducts>,
+        element: <AllProducts />,
         loader: () => fetch("http://localhost:3000/all-products"),
       },
       {
-        path: "/all-products/:categoryName",
-        element:<TopProducts></TopProducts>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-products/${params.categoryName}`),
-
+        path: "/category-products/:categoryName",
+        element: <TopProducts />,
+         
       },
       {
         path: "/add-products",
-        element: <AddProducts></AddProducts>,
+        element: <AddProducts />,
       },
-    //   {
-    //     path: "/all-products/:id",
-    //     element: <UpdateProducts></UpdateProducts>,
-    //     loader: ({ params }) =>
-    //       fetch(`http://localhost:3000/all-products/${params.id}`),
-    //   },
+      {
+        path: "/all-products/:id",
+        element: <UpdateProducts />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/all-products/${params.id}`),
+      },
       {
         path: "/my-products",
-        element: <MyProducts></MyProducts>,
+        element: <MyProducts />,
       },
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: "register",
-        Component: Register,
-      },
-      {
-        path: "*",
-        Component: Error,
-      },
+      { path: "login", Component: Login },
+      { path: "register", Component: Register },
+      { path: "*", Component: Error },
     ],
   },
 ]);

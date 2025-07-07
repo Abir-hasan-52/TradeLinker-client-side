@@ -36,7 +36,7 @@ const AllCategory = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
       {categories.map((cat) => (
-        <Link key={cat.name} to={`/all-products/${encodeURIComponent(cat.name)}`}>
+        <Link key={cat.name} to={`category-products/${encodeURIComponent(cat.name)}`}>
           <div className="shadow rounded overflow-hidden hover:shadow-lg transition">
             <img src={cat.image} alt={cat.name} className="w-full h-40 object-cover" />
             <div className="p-3 font-semibold text-center">{cat.name}</div>

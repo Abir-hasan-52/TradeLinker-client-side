@@ -4,6 +4,7 @@ import WhyChooseUs from '../../Components/ExtraSections/WhyChooseUs';
 import FeaturedBrands from '../../Components/ExtraSections/FeaturedBrands';
 import TopProducts from '../TopProducts/TopProducts';
 import AllCategory from '../TopProducts/AllCategory';
+import CategoryCard from '../TopProducts/CategoryCard';
 
 const Home = () => {
     return (
@@ -18,6 +19,9 @@ const Home = () => {
                 </p>
 
                 <AllCategory></AllCategory>
+            </section>
+            <section>
+                 <TopProducts></TopProducts>
             </section>
             <section>
                 <WhyChooseUs></WhyChooseUs>
