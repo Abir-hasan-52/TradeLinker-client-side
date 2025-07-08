@@ -20,9 +20,7 @@ const Home = () => {
 
                 <AllCategory></AllCategory>
             </section>
-            <section>
-                 <TopProducts></TopProducts>
-            </section>
+            
             <section>
                 <WhyChooseUs></WhyChooseUs>
             </section>

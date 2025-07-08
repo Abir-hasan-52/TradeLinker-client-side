@@ -37,6 +37,16 @@ const Navbar = () => {
     </li>,
     <li className="  hover:bg-[#4FB3E8]">
       <NavLink
+        to="/category-Products"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : ""
+        }
+      >
+        Category Products
+      </NavLink>
+    </li>,
+    <li className="  hover:bg-[#4FB3E8]">
+      <NavLink
         to="/All-Products"
         className={({ isActive }) =>
           isActive ? "font-bold underline text-[#4FB3E8]" : ""
@@ -45,6 +55,7 @@ const Navbar = () => {
         All Products
       </NavLink>
     </li>,
+     
     <li className="  hover:bg-[#4FB3E8]">
       <NavLink
         to="/add-products"
@@ -105,9 +116,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn hover:bg-[#4FB3E8] text-white btn-ghost text-xl">
+        <Link to="/" className="btn hover:bg-[#4FB3E8] text-white btn-ghost text-xl">
           TradeLinks
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal text-white px-1">{links}</ul>

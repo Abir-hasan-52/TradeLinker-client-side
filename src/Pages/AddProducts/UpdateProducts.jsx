@@ -35,11 +35,11 @@ const UpdateProducts = () => {
         const form = e.target;
     
         const updatedProduct = {
-        image: form.image.value,
+        image: form.image.value, 
         name: form.name.value,
         brandName: form.brand.value,
-        min_selling_quantity: parseInt(form.quantity.value),
-        main_quantity: parseInt(form.minQuantity.value),
+        min_selling_quantity: parseInt(form.minQuantity.value),
+        main_quantity: parseInt(form.quantity.value),
         category: form.category.value,
         description: form.shortDesc.value,
         price: parseFloat(form.price.value),

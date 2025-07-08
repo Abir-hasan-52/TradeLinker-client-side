@@ -10,6 +10,7 @@ import MyProducts from "../Pages/MyProducts/MyProducts";
 import Error from "../Components/ErrorPage/Error";
 import UpdateProducts from "../Pages/AddProducts/UpdateProducts";
 import TopProducts from "../Pages/TopProducts/TopProducts";
+import ProductsDetails from "../Pages/TopProducts/ProductsDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,9 +24,20 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:3000/all-products"),
       },
       {
+        path: "/category-products",
+        element: <TopProducts />,
+      },
+      {
         path: "/category-products/:categoryName",
         element: <TopProducts />,
-         
+      },
+      {
+        path: "/category-products/:categoryName/:id",
+        Component: ProductsDetails,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:3000/all-products/${params.id}`
+          ),
       },
       {
         path: "/add-products",
