@@ -31,7 +31,6 @@ const ProductsDetails = () => {
       });
     }
 
-    // Send order & update quantity
     const response = await fetch(
       `http://localhost:3000/decrease-quantity/${_id}`,
       {
@@ -44,11 +43,31 @@ const ProductsDetails = () => {
     const result = await response.json();
 
     if (result.modifiedCount > 0) {
+      // ✅ Save order to cart collection
+      const cartItem = {
+        userEmail: user.email,
+        name,
+        image,
+        brandName,
+        category,
+        description,
+        min_buying_quantity: buyQuantity,
+        buyDate: new Date(),
+        productId: _id, // ✅ required to increase quantity on remove
+      };
+
+      await fetch("http://localhost:3000/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cartItem),
+      });
+
       Swal.fire({
         icon: "success",
         title: "Order Placed!",
         text: `You successfully ordered ${buyQuantity} items.`,
       });
+
       setShowModal(false);
     } else {
       Swal.fire({

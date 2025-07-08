@@ -35,6 +35,7 @@ const UpdateProducts = () => {
         const form = e.target;
     
         const updatedProduct = {
+        
         image: form.image.value, 
         name: form.name.value,
         brandName: form.brand.value,

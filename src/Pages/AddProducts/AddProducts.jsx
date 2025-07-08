@@ -20,6 +20,7 @@ const AddProducts = () => {
     const form = e.target;
 
     const newProduct = {
+      
       image: form.image.value,
       name: form.name.value,
       brandName: form.brand.value,
