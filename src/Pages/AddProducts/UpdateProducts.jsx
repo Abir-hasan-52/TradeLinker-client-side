@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const UpdateProducts = () => {
   const { user } = useContext(AuthContext);
@@ -29,40 +30,53 @@ const UpdateProducts = () => {
     price,
     rating,
   } = UpdateProducts;
-    const handleUpdateProduct = (e) => {
-        e.preventDefault();
-    
-        const form = e.target;
-    
-        const updatedProduct = {
-        
-        image: form.image.value, 
-        name: form.name.value,
-        brandName: form.brand.value,
-        min_selling_quantity: parseInt(form.minQuantity.value),
-        main_quantity: parseInt(form.quantity.value),
-        category: form.category.value,
-        description: form.shortDesc.value,
-        price: parseFloat(form.price.value),
-        rating: parseFloat(form.rating.value),
-        hrName: form.hrName.value,
-        createdBy: form.createdBy.value,
-        };
-    
-        console.log("Updated Product:", updatedProduct);
-    
-        // post api
-        axios.put(`http://localhost:3000/update-product/${_id}`, updatedProduct)
-        .then((response) => {
-            console.log("Product updated successfully:", response.data);
-            alert("Product updated successfully!");
-        })
-        .catch((error) => {
-            console.error("Error updating product:", error);
-            alert("Failed to update product. Please try again.");
-        });
-         
+  const handleUpdateProduct = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const updatedProduct = {
+      image: form.image.value,
+      name: form.name.value,
+      brandName: form.brand.value,
+      min_selling_quantity: parseInt(form.minQuantity.value),
+      main_quantity: parseInt(form.quantity.value),
+      category: form.category.value,
+      description: form.shortDesc.value,
+      price: parseFloat(form.price.value),
+      rating: parseFloat(form.rating.value),
+      hrName: form.hrName.value,
+      createdBy: form.createdBy.value,
     };
+
+    console.log("Updated Product:", updatedProduct);
+
+    // post api
+    axios
+      .put(`http://localhost:3000/update-product/${_id}`, updatedProduct)
+      .then((response) => {
+        console.log("Product updated successfully:", response.data);
+         
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Product updated successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error("Error updating product:", error);
+       
+         Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title:  `Failed to update product: ${error.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+  });
+  }
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-6 mb-12">
       <h2 className="text-2xl font-bold mb-6 text-center">Update Product</h2>
@@ -198,7 +212,6 @@ const UpdateProducts = () => {
           <input
             type="text"
             name="hrName"
-
             placeholder="Enter HR Name"
             defaultValue={user?.displayName}
             className="w-full border p-2 rounded"
@@ -222,6 +235,7 @@ const UpdateProducts = () => {
         {/* Submit Button */}
         <div className="col-span-1 md:col-span-2 flex justify-center">
           <button
+            // to="/all-products"
             type="submit"
             className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
           >

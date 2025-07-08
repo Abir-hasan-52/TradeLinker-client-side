@@ -8,6 +8,7 @@ const ProductsDetails = () => {
   const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [buyQuantity, setBuyQuantity] = useState(1);
+  const [productData, setProductData] = useState(product);
 
   const {
     _id,
@@ -20,7 +21,7 @@ const ProductsDetails = () => {
     description,
     min_selling_quantity,
     main_quantity,
-  } = product;
+  } = productData; // <-- use productData here
 
   const handleBuyNow = async () => {
     if (buyQuantity < min_selling_quantity) {
@@ -43,7 +44,13 @@ const ProductsDetails = () => {
     const result = await response.json();
 
     if (result.modifiedCount > 0) {
-      // ✅ Save order to cart collection
+      // Update local state so UI reflects updated quantity immediately
+      setProductData((prev) => ({
+        ...prev,
+        main_quantity: prev.main_quantity - buyQuantity,
+      }));
+
+      // Save order to cart collection
       const cartItem = {
         userEmail: user.email,
         name,
@@ -53,7 +60,7 @@ const ProductsDetails = () => {
         description,
         min_buying_quantity: buyQuantity,
         buyDate: new Date(),
-        productId: _id, // ✅ required to increase quantity on remove
+        productId: _id, // required to increase quantity on remove
       };
 
       await fetch("http://localhost:3000/cart", {

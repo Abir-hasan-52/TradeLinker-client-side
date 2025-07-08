@@ -5,15 +5,21 @@ import MyProductCard from "./MyProductCard";
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
    const { user } = useContext(AuthContext);
+   const accessToken = user?.accessToken;  
     const userEmail = user?.email;
 
   useEffect(() => {
     if (!userEmail) return;
 
-    fetch(`http://localhost:3000/my-products?createdBy=${userEmail}`)
+    fetch(`http://localhost:3000/my-products?createdBy=${userEmail}`,{
+        headers: {
+             
+            Authorization: `Bearer ${accessToken}`,  
+        },
+    })
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [userEmail]);
+  }, [userEmail, accessToken]);
 
   return (
     <div>

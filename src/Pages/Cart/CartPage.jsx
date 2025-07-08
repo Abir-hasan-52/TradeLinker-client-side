@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 const CartPage = () => {
   const { user } = useContext(AuthContext);
   const [cartProducts, setCartProducts] = useState([]);
+//   const [product, setProduct] = useState(product);
   const userEmail = user?.email;
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const CartPage = () => {
 
   if (!confirm.isConfirmed) return;
 
-  // ✅ STEP 1: INCREASE product quantity in DB
+//     Increase product quantity
   await fetch(`http://localhost:3000/increase-quantity/${product.productId}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
