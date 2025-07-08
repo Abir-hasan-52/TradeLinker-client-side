@@ -11,6 +11,8 @@ import Error from "../Components/ErrorPage/Error";
 import UpdateProducts from "../Pages/AddProducts/UpdateProducts";
 import TopProducts from "../Pages/TopProducts/TopProducts";
 import ProductsDetails from "../Pages/TopProducts/ProductsDetails";
+import CartPage from "../Pages/Cart/CartPage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -33,25 +35,45 @@ const router = createBrowserRouter([
       },
       {
         path: "/category-products/:categoryName/:id",
-        Component: ProductsDetails,
+        element: (
+          <PrivateRoute>
+            <ProductsDetails />
+          </PrivateRoute>
+        ),
+
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:3000/all-products/${params.id}`
-          ),
+          fetch(`http://localhost:3000/all-products/${params.id}`),
       },
       {
         path: "/add-products",
-        element: <AddProducts />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <AddProducts />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-products/:id",
-        element: <UpdateProducts />,
+        element: (
+          <PrivateRoute>
+            <UpdateProducts />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/all-products/${params.id}`),
       },
       {
         path: "/my-products",
-        element: <MyProducts />,
+        element: (
+          <PrivateRoute>
+            <MyProducts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/cart",
+        element: <PrivateRoute><CartPage /></PrivateRoute>,
       },
       { path: "login", Component: Login },
       { path: "register", Component: Register },

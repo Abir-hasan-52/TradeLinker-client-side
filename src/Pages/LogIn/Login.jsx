@@ -1,10 +1,13 @@
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -37,6 +40,7 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -44,6 +48,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate(from, { replace: true });
         console.log("User logged in with Google successfully:", user);
         // You can redirect or show a success message here
       })
