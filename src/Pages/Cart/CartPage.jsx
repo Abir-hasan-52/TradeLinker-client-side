@@ -7,10 +7,17 @@ const CartPage = () => {
   const [cartProducts, setCartProducts] = useState([]);
 //   const [product, setProduct] = useState(product);
   const userEmail = user?.email;
+    const accessToken = user?.accessToken;
 
   useEffect(() => {
     if (!userEmail) return;
-    fetch(`http://localhost:3000/cart?userEmail=${userEmail}`)
+fetch(`http://localhost:3000/cart?userEmail=${userEmail}`,
+    {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,  
+        },
+    }
+)
       .then((res) => res.json())
       .then((data) => setCartProducts(data));
   }, [userEmail]);
