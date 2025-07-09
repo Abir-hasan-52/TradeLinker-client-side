@@ -34,7 +34,7 @@ const Register = () => {
     setError("");
 
     // Here you would typically handle the registration logic, e.g., calling an API or Firebase auth
-    console.log("Registered:", { name, email, photoURL, password });
+    // console.log("Registered:", { name, email, photoURL, password });
 
     createUser(email, password)
       .then((result) => {
@@ -48,7 +48,7 @@ const Register = () => {
           timer: 1500,
         });
 
-        console.log("User created successfully:", user);
+        // console.log("User created successfully:", user);
         // You can redirect or show a success message here
       })
       .catch((error) => {

@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const UpdateProducts = () => {
   const { user } = useContext(AuthContext);
   const UpdateProducts = useLoaderData();
-  console.log(UpdateProducts);
+  // console.log(UpdateProducts);
   const categories = [
     "Electronics & Gadgets",
     "Home & Kitchen Appliances",
@@ -49,13 +49,13 @@ const UpdateProducts = () => {
       createdBy: form.createdBy.value,
     };
 
-    console.log("Updated Product:", updatedProduct);
+    // console.log("Updated Product:", updatedProduct);
 
     // post api
     axios
-      .put(`http://localhost:3000/update-product/${_id}`, updatedProduct)
+      .put(`https://trade-linker-server-side.vercel.app/update-product/${_id}`, updatedProduct)
       .then((response) => {
-        console.log("Product updated successfully:", response.data);
+        // console.log("Product updated successfully:", response.data);
 
         Swal.fire({
           position: "top-end",
@@ -66,7 +66,7 @@ const UpdateProducts = () => {
         });
       })
       .catch((error) => {
-        console.error("Error updating product:", error);
+        // console.error("Error updating product:", error);
 
         Swal.fire({
           position: "top-end",

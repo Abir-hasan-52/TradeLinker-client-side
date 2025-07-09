@@ -27,13 +27,20 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log("User logged in successfully:", user);
+        // console.log("User logged in successfully:", user);
         // You can redirect or show a success message here
       })
       .catch((error) => {
         console.error("Error logging in:", error);
         // Handle login error, e.g., show an error message
-        alert("Login failed: " + error.message);
+        // alert("Login failed: " + error.message);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `Login failed: ${error.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
@@ -52,7 +59,7 @@ const Login = () => {
           timer: 1500,
         });
         navigate(from, { replace: true });
-        console.log("User logged in with Google successfully:", user);
+        // console.log("User logged in with Google successfully:", user);
         // You can redirect or show a success message here
       })
       .catch((error) => {

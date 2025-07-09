@@ -11,7 +11,7 @@ const MyProducts = () => {
   useEffect(() => {
     if (!userEmail) return;
 
-    fetch(`http://localhost:3000/my-products?createdBy=${userEmail}`,{
+    fetch(`https://trade-linker-server-side.vercel.app/my-products?createdBy=${userEmail}`,{
         headers: {
              
             Authorization: `Bearer ${accessToken}`,  

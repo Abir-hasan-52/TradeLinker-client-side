@@ -1,25 +1,53 @@
-import { useParams } from "react-router"; // ঠিক import
+import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 import CategoryCard from "./CategoryCard";
- 
 
 const TopProducts = () => {
   const { categoryName } = useParams();
-   
+
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [showFiltered, setShowFiltered] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/category-products?category=${categoryName}`)
+    fetch(
+      `https://trade-linker-server-side.vercel.app/category-products?category=${categoryName}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);  
         setProducts(data);
+        setFilteredProducts(data); // Default to all
+        setShowFiltered(false); // Reset filter when category changes
       });
   }, [categoryName]);
- 
 
-
+  const handleFilterToggle = () => {
+    if (!showFiltered) {
+      const filtered = products.filter(
+        (product) => product.minimum_selling_quantity > 100
+      );
+      setFilteredProducts(filtered);
+      Swal.fire({
+        icon: "info",
+        title: "Filter Applied",
+        text: "Showing products with Minimum Selling Quantity greater than 100",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } else {
+      setFilteredProducts(products);
+      Swal.fire({
+        icon: "info",
+        title: "Filter Removed",
+        text: "Showing all products in this category",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    }
+    setShowFiltered(!showFiltered);
+  };
 
   return (
     <div className="p-6">
@@ -27,13 +55,26 @@ const TopProducts = () => {
         Products in: {decodeURIComponent(categoryName)}
       </h2>
 
-      {products.length === 0 ? (
+      <button
+        onClick={handleFilterToggle}
+        className="mb-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      >
+        {showFiltered ? "Show All Products" : "Show Available Products"}
+      </button>
+
+      {showFiltered && (
+        <p className="text-sm text-gray-600 mb-4">
+          Showing only products with{" "}
+          <strong>Minimum Selling Quantity &gt; 100</strong>.
+        </p>
+      )}
+
+      {filteredProducts.length === 0 ? (
         <p>No products found in this category.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <CategoryCard key={product._id} product={product} />
-             
           ))}
         </div>
       )}

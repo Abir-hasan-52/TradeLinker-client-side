@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,6 @@ const AddProducts = () => {
     const form = e.target;
 
     const newProduct = {
-      
       image: form.image.value,
       name: form.name.value,
       brandName: form.brand.value,
@@ -34,22 +34,40 @@ const AddProducts = () => {
       createdBy: form.createdBy.value,
     };
 
-    console.log("Submitted Product:", newProduct);
+    // console.log("Submitted Product:", newProduct);
 
     // Optional: reset form
     // form.reset();
 
     // post api
-    axios.post("http://localhost:3000/add-product",newProduct)
-    .then((response) => {
-        console.log("Product added successfully:", response.data);
-        alert("Product added successfully!");
-    })
-    .catch((error) => {
-        console.error("Error adding product:", error);
-        alert("Failed to add product. Please try again.");
-    });
-
+    axios
+      .post(
+        "https://trade-linker-server-side.vercel.app/add-product",
+        newProduct
+      )
+      .then((response) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Product added successfully!${response.data}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // console.log("Product added successfully:", response.data);
+        // alert("Product added successfully!");
+      })
+      .catch((error) => {
+        
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Failed to add product. Please try again.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // console.error("Error adding product:", error);
+        // alert("Failed to add product. Please try again.");
+      });
   };
 
   return (
@@ -79,7 +97,7 @@ const AddProducts = () => {
           <input
             type="text"
             name="name"
-             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
@@ -90,7 +108,7 @@ const AddProducts = () => {
           <input
             type="text"
             name="brand"
-             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
@@ -124,7 +142,7 @@ const AddProducts = () => {
           <label className="text-sm text-[#1E293B]">Category</label>
           <select
             name="category"
-           className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           >
             <option value="">Select category</option>
@@ -142,7 +160,7 @@ const AddProducts = () => {
           <textarea
             name="shortDesc"
             rows="3"
-           className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
@@ -154,7 +172,7 @@ const AddProducts = () => {
             type="number"
             step="0.01"
             name="price"
-           className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
@@ -167,7 +185,7 @@ const AddProducts = () => {
             name="rating"
             min="1"
             max="5"
-           className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
@@ -195,7 +213,7 @@ const AddProducts = () => {
             name="createdBy"
             placeholder=""
             defaultValue={user?.email}
-           className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
+            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
@@ -204,7 +222,7 @@ const AddProducts = () => {
         <div className="col-span-1 md:col-span-2 flex justify-center">
           <button
             type="submit"
-             className="bg-[#4FB3E8] hover:bg-[#38a1d8] text-white font-semibold px-6 py-2 rounded-md transition"
+            className="bg-[#4FB3E8] hover:bg-[#38a1d8] text-white font-semibold px-6 py-2 rounded-md transition"
           >
             Add Product
           </button>

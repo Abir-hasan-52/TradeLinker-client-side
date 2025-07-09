@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts />,
-        loader: () => fetch("http://localhost:3000/all-products"),
+        loader: () => fetch("https://trade-linker-server-side.vercel.app/all-products"),
         
       },
       {
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         ),
 
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-products/${params.id}`),
+          fetch(`https://trade-linker-server-side.vercel.app/all-products/${params.id}`),
 
       },
       {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-products/${params.id}`),
+          fetch(`https://trade-linker-server-side.vercel.app/all-products/${params.id}`),
       },
       {
         path: "/my-products",

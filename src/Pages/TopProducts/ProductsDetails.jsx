@@ -33,7 +33,7 @@ const ProductsDetails = () => {
     }
 
     const response = await fetch(
-      `http://localhost:3000/decrease-quantity/${_id}`,
+      `https://trade-linker-server-side.vercel.app/decrease-quantity/${_id}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -63,7 +63,7 @@ const ProductsDetails = () => {
         productId: _id, // required to increase quantity on remove
       };
 
-      await fetch("http://localhost:3000/cart", {
+      await fetch("https://trade-linker-server-side.vercel.app/cart", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cartItem),

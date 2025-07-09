@@ -13,7 +13,7 @@ const CartPage = () => {
  
   useEffect(() => {
     if (!userEmail) return;
-fetch(`http://localhost:3000/cart?userEmail=${userEmail}`,
+fetch(`https://trade-linker-server-side.vercel.app/cart?userEmail=${userEmail}`,
     {
         headers: {
             Authorization: `Bearer ${accessToken}`,  
@@ -36,14 +36,14 @@ fetch(`http://localhost:3000/cart?userEmail=${userEmail}`,
   if (!confirm.isConfirmed) return;
 
 //     Increase product quantity
-  await fetch(`http://localhost:3000/increase-quantity/${product.productId}`, {
+  await fetch(`https://trade-linker-server-side.vercel.app/increase-quantity/${product.productId}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ quantity: product.min_selling_quantity }),
   });
 
 //     Delete from cart
-  const deleteRes = await fetch(`http://localhost:3000/cart/${product._id}`, {
+  const deleteRes = await fetch(`https://trade-linker-server-side.vercel.app/cart/${product._id}`, {
     method: "DELETE",
   });
 
