@@ -35,16 +35,16 @@ const Navbar = () => {
         Home
       </NavLink>
     </li>,
-    <li className="  hover:bg-[#4FB3E8]">
-      <NavLink
-        to="/category-Products"
-        className={({ isActive }) =>
-          isActive ? "font-bold underline text-[#4FB3E8]" : ""
-        }
-      >
-        Category Products
-      </NavLink>
-    </li>,
+    // <li className="  hover:bg-[#4FB3E8]">
+    //   <NavLink
+    //     to="/category-Products"
+    //     className={({ isActive }) =>
+    //       isActive ? "font-bold underline text-[#4FB3E8]" : ""
+    //     }
+    //   >
+    //     Category Products
+    //   </NavLink>
+    // </li>,
     <li className="  hover:bg-[#4FB3E8]">
       <NavLink
         to="/All-Products"

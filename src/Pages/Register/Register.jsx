@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
+   const [showPassword, setShowPassword] = useState(false);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -87,13 +89,29 @@ const Register = () => {
             placeholder="Photo URL (optional)"
             className="input w-full"
           />
-          <input
+          {/* <input
             name="password"
             type="password"
             placeholder="Password"
             className="input w-full"
             required
-          />
+          /> */}
+          <div className="relative">
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="input w-full pr-10" // Add padding for icon
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 hover:text-blue-500"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
           {/* Password Rules */}
           <div className="text-xs text-gray-500">

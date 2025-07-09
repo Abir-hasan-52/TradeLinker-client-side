@@ -5,11 +5,11 @@ import ProductsTable from "./ProductsTable";
 
 const AllProducts = () => {
   const products = useLoaderData();
-  const [view, setView] = useState("card"); // 'card' or 'table'
+  const [view, setView] = useState("card");  
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl text-center font-bold my-5">All Products</h1>
+      <h1 className="text-3xl text-center font-bold my-5 text-[#1B365D]">All Products</h1>
 
       {/* View Toggle Dropdown */}
       <div className="flex justify-end mb-4">
@@ -51,7 +51,7 @@ const AllProducts = () => {
             <tbody>
                   
               {products.map((product) => (
-                 <ProductsTable product={product}></ProductsTable>
+                 <ProductsTable key={product._id}  product={product} ></ProductsTable>
               ))}
               
             </tbody>

@@ -1,10 +1,13 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
-import { useContext } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -93,20 +96,29 @@ const Login = () => {
             />
           </div>
 
-          <div>
+          <div className="relative">
             <label
               htmlFor="password"
               className="text-sm font-medium text-gray-700 block mb-1"
             >
               Password
             </label>
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               placeholder="••••••••"
-              className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#4FB3E8] outline-none"
+              className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#4FB3E8] outline-none pr-12"
             />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-11 transform -translate-y-1/2 text-gray-500 hover:text-[#4FB3E8] focus:outline-none"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
 
           <button

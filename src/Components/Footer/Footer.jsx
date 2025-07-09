@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { Link, NavLink } from "react-router";
 
 const Footer = () => {
   return (
@@ -16,35 +17,61 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a href="/" className="hover:text-[#4FB3E8]">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/categories" className="hover:text-[#4FB3E8]">
-                Categories
-              </a>
-            </li>
-            <li>
-              <a href="/all-products" className="hover:text-[#4FB3E8]">
-                All Products
-              </a>
-            </li>
-            <li>
-              <a href="/add-product" className="hover:text-[#4FB3E8]">
-                Add Product
-              </a>
-            </li>
-            <li>
-              <a href="/cart" className="hover:text-[#4FB3E8]">
-                Cart
-              </a>
-            </li>
-          </ul>
-        </div>
+  <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+  <ul className="space-y-2 text-sm">
+    <li>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : "hover:text-[#4FB3E8]"
+        }
+      >
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/category-products"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : "hover:text-[#4FB3E8]"
+        }
+      >
+        Categories
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/all-products"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : "hover:text-[#4FB3E8]"
+        }
+      >
+        All Products
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/add-products"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : "hover:text-[#4FB3E8]"
+        }
+      >
+        Add Product
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/cart"
+        className={({ isActive }) =>
+          isActive ? "font-bold underline text-[#4FB3E8]" : "hover:text-[#4FB3E8]"
+        }
+      >
+        Cart
+      </NavLink>
+    </li>
+  </ul>
+</div>
+
 
         {/* Contact Information */}
         <div>

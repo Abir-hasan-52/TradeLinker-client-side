@@ -56,7 +56,7 @@ const UpdateProducts = () => {
       .put(`http://localhost:3000/update-product/${_id}`, updatedProduct)
       .then((response) => {
         console.log("Product updated successfully:", response.data);
-         
+
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -67,190 +67,217 @@ const UpdateProducts = () => {
       })
       .catch((error) => {
         console.error("Error updating product:", error);
-       
-         Swal.fire({
+
+        Swal.fire({
           position: "top-end",
           icon: "error",
-          title:  `Failed to update product: ${error.message}`,
+          title: `Failed to update product: ${error.message}`,
           showConfirmButton: false,
           timer: 1500,
         });
-  });
-  }
+      });
+  };
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-6 mb-12">
-      <h2 className="text-2xl font-bold mb-6 text-center">Update Product</h2>
+    <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-10 mb-16">
+      <h2 className="text-3xl font-bold mb-8 text-center text-[#1E293B] underline underline-offset-4">
+        Update Product
+      </h2>
+
       <form
         onSubmit={handleUpdateProduct}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         {/* Image URL */}
-        <div className="col-span-1 md:col-span-2">
-          <label className="block font-medium mb-1">Product Image URL</label>
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Product Image URL
+          </label>
           <input
             type="text"
             name="image"
             defaultValue={image}
             placeholder="https://example.com/image.jpg"
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8] outline-none"
             required
           />
         </div>
 
         {/* Product Name */}
         <div>
-          <label className="block font-medium mb-1">Product Name</label>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Product Name
+          </label>
           <input
             type="text"
             name="name"
             defaultValue={name}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
         {/* Brand */}
         <div>
-          <label className="block font-medium mb-1">Brand Name</label>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Brand Name
+          </label>
           <input
             type="text"
             name="brand"
             defaultValue={brandName}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
         {/* Quantity */}
         <div>
-          <label className="block font-medium mb-1">Main Quantity</label>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Main Quantity
+          </label>
           <input
             type="number"
             name="quantity"
             defaultValue={main_quantity}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
-        {/* Minimum Selling Quantity */}
+        {/* Min Selling Quantity */}
         <div>
-          <label className="block font-medium mb-1">
-            Minimum Selling Quantity
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Min Selling Quantity
           </label>
           <input
             type="number"
             name="minQuantity"
             defaultValue={min_selling_quantity}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
-        {/* Category Dropdown */}
-        <div className="col-span-1 md:col-span-2">
-          <label className="block font-medium mb-1">Category</label>
+        {/* Category */}
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Category
+          </label>
           <select
             name="category"
             defaultValue={category}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           >
             <option value="">Select category</option>
-            {categories.map((cat, index) => (
-              <option key={index} value={cat}>
+            {categories.map((cat, i) => (
+              <option key={i} value={cat}>
                 {cat}
               </option>
             ))}
           </select>
         </div>
 
-        {/* Short Description */}
-        <div className="col-span-1 md:col-span-2">
-          <label className="block font-medium mb-1">Short Description</label>
+        {/* Description */}
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Short Description
+          </label>
           <textarea
             name="shortDesc"
             defaultValue={description}
-            rows="3"
-            className="w-full border p-2 rounded"
+            rows="4"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
         {/* Price */}
         <div>
-          <label className="block font-medium mb-1">Price (per unit)</label>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Price ($)
+          </label>
           <input
             type="number"
-            step="0.01"
             name="price"
+            step="0.01"
             defaultValue={price}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
         {/* Rating */}
         <div>
-          <label className="block font-medium mb-1">Rating (1–5)</label>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            Rating (1–5)
+          </label>
           <input
             type="number"
             name="rating"
             min="1"
             max="5"
             defaultValue={rating}
-            className="w-full border p-2 rounded"
-            required
-          />
-        </div>
-        <div className="mt-3 col-span-1 flex justify-center items-center md:col-span-2">
-          <label className=" block font-medium mb-1">HR Information</label>
-        </div>
-        {/* HR Name */}
-        <div>
-          <label className="block font-medium mb-1">HR Name </label>
-          <input
-            type="text"
-            name="hrName"
-            placeholder="Enter HR Name"
-            defaultValue={user?.displayName}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
-        {/* HR email */}
+        {/* HR Info Header */}
+        <div className="md:col-span-2 text-center mt-4">
+          <h4 className="text-lg font-semibold text-[#1E293B]">
+            HR Information
+          </h4>
+        </div>
+
+        {/* HR Name */}
         <div>
-          <label className="block font-medium mb-1">HR Email</label>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            HR Name
+          </label>
+          <input
+            type="text"
+            name="hrName"
+            defaultValue={user?.displayName}
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
+            required
+          />
+        </div>
+
+        {/* HR Email */}
+        <div>
+          <label className="block text-sm font-medium text-[#1E293B]">
+            HR Email
+          </label>
           <input
             type="email"
             name="createdBy"
-            placeholder=""
             defaultValue={user?.email}
-            className="w-full border p-2 rounded"
+            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#4FB3E8]"
             required
           />
         </div>
 
         {/* Submit Button */}
-        <div className="col-span-1 md:col-span-2 flex justify-center">
+        <div className="md:col-span-2 flex justify-center mt-6">
           <button
-            // to="/all-products"
             type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+            className="bg-[#4FB3E8] hover:bg-[#38A5D3] text-white font-semibold px-6 py-2 rounded-md shadow transition"
           >
-            Update
+            Update Product
           </button>
         </div>
       </form>
 
-      {/* Static Info */}
-      <div className="mt-10 p-4 bg-gray-50 border rounded">
-        <h3 className="text-lg font-semibold mb-2">Why Add Products?</h3>
+      {/* Bottom Static Info */}
+      <div className="mt-10 p-5 bg-[#F1F5F9] border border-gray-200 rounded-md">
+        <h3 className="text-lg font-semibold mb-2 text-[#1E293B]">
+          Why Update Product?
+        </h3>
         <p className="text-sm text-gray-700">
-          Add your products to reach wholesale buyers worldwide. Ensure image
-          URLs are valid and descriptions are accurate. Minimum selling quantity
-          helps maintain large-scale business structure.
+          Keeping your product info updated ensures accurate pricing, stock
+          levels, and business credibility. Be clear and honest about your
+          items. Wholesale buyers rely on this data to make decisions.
         </p>
       </div>
     </div>

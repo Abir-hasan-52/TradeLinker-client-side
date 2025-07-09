@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
+import { BsCart4 } from "react-icons/bs";
+ 
 
 const CartPage = () => {
   const { user } = useContext(AuthContext);
@@ -8,7 +10,7 @@ const CartPage = () => {
 //   const [product, setProduct] = useState(product);
   const userEmail = user?.email;
     const accessToken = user?.accessToken;
-
+ 
   useEffect(() => {
     if (!userEmail) return;
 fetch(`http://localhost:3000/cart?userEmail=${userEmail}`,
@@ -40,7 +42,7 @@ fetch(`http://localhost:3000/cart?userEmail=${userEmail}`,
     body: JSON.stringify({ quantity: product.min_selling_quantity }),
   });
 
-  // ✅ STEP 2: DELETE cart item
+//     Delete from cart
   const deleteRes = await fetch(`http://localhost:3000/cart/${product._id}`, {
     method: "DELETE",
   });
@@ -56,10 +58,10 @@ fetch(`http://localhost:3000/cart?userEmail=${userEmail}`,
 
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-bold mb-4">🛒 Your Cart</h2>
+    <div className="max-w-6xl mx-auto px-4 py-6 bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2]">
+      <h2 className="text-2xl font-bold text-[#1B365D] mb-4 flex items-center justify-center gap-4"><BsCart4 size={30} /> Your Cart</h2>
       {cartProducts.length === 0 ? (
-        <p>No products in your cart.</p>
+        <p className="text-center">No products in your cart.</p>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cartProducts.map((product) => (
