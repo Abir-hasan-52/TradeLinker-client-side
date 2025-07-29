@@ -15,31 +15,38 @@ const MyProductCard = ({ product }) => {
   } = product;
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 mb-4 flex flex-col md:flex-row gap-4 border border-gray-100">
-      {/* Image */}
-      <div className="w-full md:w-40 h-40">
+    <div className="card md:card-side bg-base-100 border shadow-sm hover:shadow-md transition duration-200">
+      {/* Product Image */}
+      <figure className="md:w-48 h-48 p-4">
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover rounded"
+          className="rounded-xl w-full h-full object-cover"
         />
-      </div>
+      </figure>
 
-      {/* Info */}
-      <div className="flex-1">
-        <h3 className="text-xl font-bold text-gray-800">{name}</h3>
-        <p className="text-sm text-gray-500 mb-1">Brand: <span className="font-medium">{brandName}</span></p>
-        <p className="text-sm text-gray-500 mb-1">Category: {category}</p>
-        <p className="text-sm text-gray-500 mb-1">
-          Quantity: {main_quantity} | Minimum: {min_selling_quantity}
+      {/* Product Details */}
+      <div className="card-body py-4 px-4 flex-1">
+        <h2 className="card-title text-lg md:text-xl font-semibold text-neutral-800">
+          {name}
+        </h2>
+        <p className="text-sm text-gray-600">
+          Brand: <span className="font-medium">{brandName}</span>
         </p>
-        <p className="text-sm text-gray-700 mt-2">{description}</p>
+        <p className="text-sm text-gray-600">Category: {category}</p>
+        <p className="text-sm text-gray-600">
+          Quantity: <span className="font-medium">{main_quantity}</span> | Min:{" "}
+          <span className="font-medium">{min_selling_quantity}</span>
+        </p>
 
-        {/* Price and Rating */}
-        <div className="mt-3 flex items-center justify-between">
-          <span className="text-lg font-semibold text-blue-600">${price}</span>
-          <div className="flex items-center text-yellow-500 gap-1">
-            <FaStar />
+        <p className="text-sm text-gray-700 mt-1 line-clamp-2">
+          {description}
+        </p>
+
+        <div className="mt-2 flex items-center justify-between">
+          <span className="text-base font-bold text-blue-600">${price}</span>
+          <div className="flex items-center gap-1 text-yellow-500">
+            <FaStar className="text-sm" />
             <span className="text-sm font-medium">{rating}</span>
           </div>
         </div>

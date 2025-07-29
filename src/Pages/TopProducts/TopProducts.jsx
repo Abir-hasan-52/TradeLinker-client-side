@@ -10,16 +10,19 @@ const TopProducts = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showFiltered, setShowFiltered] = useState(false);
+  const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
+    setLoading(true); // Start loading
     fetch(
       `https://trade-linker-server-side.vercel.app/category-products?category=${categoryName}`
     )
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
-        setFilteredProducts(data); // Default to all
-        setShowFiltered(false); // Reset filter when category changes
+        setFilteredProducts(data);
+        setShowFiltered(false);
+        setLoading(false);  
       });
   }, [categoryName]);
 
@@ -69,7 +72,11 @@ const TopProducts = () => {
         </p>
       )}
 
-      {filteredProducts.length === 0 ? (
+      {loading ? (
+        <div className="text-center text-blue-600 font-semibold text-lg mt-10">
+          Loading...
+        </div>
+      ) : filteredProducts.length === 0 ? (
         <p>No products found in this category.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

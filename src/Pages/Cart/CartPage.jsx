@@ -2,98 +2,113 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import { BsCart4 } from "react-icons/bs";
- 
+import { FaTrashAlt } from "react-icons/fa";
 
 const CartPage = () => {
   const { user } = useContext(AuthContext);
   const [cartProducts, setCartProducts] = useState([]);
-//   const [product, setProduct] = useState(product);
+  const [loading, setLoading] = useState(true);
+
   const userEmail = user?.email;
-    const accessToken = user?.accessToken;
- 
+  const accessToken = user?.accessToken;
+
   useEffect(() => {
     if (!userEmail) return;
-fetch(`https://trade-linker-server-side.vercel.app/cart?userEmail=${userEmail}`,
-    {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,  
-        },
-    }
-)
+
+    fetch(`https://trade-linker-server-side.vercel.app/cart?userEmail=${userEmail}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setCartProducts(data));
+      .then((data) => {
+        setCartProducts(data);
+        setLoading(false);
+      });
   }, [userEmail]);
 
- const handleRemove = async (product) => {
-  const confirm = await Swal.fire({
-    title: "Are you sure?",
-    text: `You are about to remove ${product.name} from cart`,
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, remove it!",
-  });
+  const handleRemove = async (product) => {
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to remove ${product.name} from cart.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, remove it!",
+    });
 
-  if (!confirm.isConfirmed) return;
+    if (!confirm.isConfirmed) return;
 
-//     Increase product quantity
-  await fetch(`https://trade-linker-server-side.vercel.app/increase-quantity/${product.productId}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ quantity: product.min_selling_quantity }),
-  });
+    await fetch(`https://trade-linker-server-side.vercel.app/increase-quantity/${product.productId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ quantity: product.min_selling_quantity }),
+    });
 
-//     Delete from cart
-  const deleteRes = await fetch(`https://trade-linker-server-side.vercel.app/cart/${product._id}`, {
-    method: "DELETE",
-  });
+    const deleteRes = await fetch(`https://trade-linker-server-side.vercel.app/cart/${product._id}`, {
+      method: "DELETE",
+    });
 
-  const deleteData = await deleteRes.json();
-  if (deleteData.deletedCount > 0) {
-    Swal.fire("Removed!", "The product has been removed from your cart.", "success");
-    setCartProducts((prev) => prev.filter((item) => item._id !== product._id));
-  } else {
-    Swal.fire("Error", "Failed to remove product from cart.", "error");
-  }
-};
-
+    const deleteData = await deleteRes.json();
+    if (deleteData.deletedCount > 0) {
+      Swal.fire("Removed!", "Product has been removed from your cart.", "success");
+      setCartProducts((prev) => prev.filter((item) => item._id !== product._id));
+    } else {
+      Swal.fire("Error", "Failed to remove product from cart.", "error");
+    }
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2]">
-      <h2 className="text-2xl font-bold text-[#1B365D] mb-4 flex items-center justify-center gap-4"><BsCart4 size={30} /> Your Cart</h2>
-      {cartProducts.length === 0 ? (
-        <p className="text-center">No products in your cart.</p>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <h2 className="text-3xl font-bold text-center text-primary flex items-center justify-center gap-2 mb-6">
+        <BsCart4 size={32} />
+        Your Cart
+      </h2>
+
+      {loading ? (
+        <div className="flex justify-center items-center h-60">
+          <span className="loading loading-bars loading-lg text-primary"></span>
+        </div>
+      ) : cartProducts.length === 0 ? (
+        <div className="text-center py-10">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png"
+            alt="empty cart"
+            className="mx-auto w-28 mb-4 opacity-50"
+          />
+          <p className="text-lg font-semibold text-gray-600">Your cart is empty.</p>
+        </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {cartProducts.map((product) => (
             <div
               key={product._id}
-              className="bg-white p-4 rounded shadow border hover:shadow-md transition"
+              className="card bg-base-100 shadow-md hover:shadow-xl transition border"
             >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-40 object-cover rounded mb-3"
-              />
-              <h3 className="text-lg font-bold">{product.name}</h3>
-              <p className="text-sm text-gray-500">
-                Brand: {product.brandName}
-              </p>
-              <p className="text-sm text-gray-500">
-                Category: {product.category}
-              </p>
-              <p className="text-sm">Description: {product.description}</p>
-              <p className="text-sm">
-                Bought Quantity: {product.min_buying_quantity}
-              </p>
-              <p className="text-sm">
-                Date: {new Date(product.buyDate).toLocaleDateString()}
-              </p>
-              <button
-                onClick={() => handleRemove(product)}
-                className="mt-3 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
-              >
-                Remove
-              </button>
+              <figure className="h-48 overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </figure>
+              <div className="card-body">
+                <h3 className="card-title text-lg font-semibold">{product.name}</h3>
+                <div className="flex flex-wrap gap-2">
+                  <div className="badge badge-outline badge-info">Brand: {product.brandName}</div>
+                  <div className="badge badge-outline badge-secondary">Category: {product.category}</div>
+                </div>
+                <p className="text-sm text-gray-600 mt-2 line-clamp-2">{product.description}</p>
+                <div className="text-sm mt-1">Quantity: <span className="font-semibold">{product.min_buying_quantity}</span></div>
+                <div className="text-sm">Date: <span className="text-gray-500">{new Date(product.buyDate).toLocaleDateString()}</span></div>
+                <div className="card-actions justify-end mt-4">
+                  <button
+                    onClick={() => handleRemove(product)}
+                    className="btn btn-sm btn-error text-white"
+                  >
+                    <FaTrashAlt className="mr-1" /> Remove
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
