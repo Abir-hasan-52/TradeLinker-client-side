@@ -1,17 +1,16 @@
 import React from "react";
-import { ClipLoader } from "react-spinners";
+ 
 
-const Loader = ({ size = 80, color = "#4f46e5", loading = true, message = "Loading..." }) => {
+const Loader = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50">
-      <ClipLoader
-        color={color}
-        loading={loading}
-        size={size}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
-      <p className="mt-4 text-lg text-gray-700 font-medium animate-pulse">{message}</p>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
+      <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-500 mb-4"></div>
+      <h3 className="text-lg font-semibold text-gray-700">
+        Loading products...
+      </h3>
+      <p className="text-sm text-gray-500 mt-2">
+        Please wait while we fetch the data
+      </p>
     </div>
   );
 };
