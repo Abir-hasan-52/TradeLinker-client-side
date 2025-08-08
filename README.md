@@ -167,8 +167,8 @@ tradelinker-client/
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/Abir-hasan-52/tradelinker-client.git
-cd tradelinker-client
+git clone https://github.com/Abir-hasan-52/tradelinker-client-side.git
+cd tradelinker-client-side
 ```
 
 ### Install Dependencies
