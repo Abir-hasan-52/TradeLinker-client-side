@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/LogIn/Login";
@@ -23,8 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/all-products",
         element: <AllProducts />,
-        loader: () => fetch("https://trade-linker-server-side.vercel.app/all-products"),
-        
+        // loader: () => fetch("https://trade-linker-server-side.vercel.app/all-products"),
       },
       {
         path: "/category-products",
