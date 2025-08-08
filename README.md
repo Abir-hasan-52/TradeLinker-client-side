@@ -316,7 +316,7 @@ npm run build
 **Abir Hasan Mahmud**
 - Email: abirhasan5208@gmail.com
 - LinkedIn: [linkedin.com/in/ah-abir](https://linkedin.com/in/ah-abir)
-- GitHub: [github.com/yourusername](https://github.com/Abir-hasan-52)
+- GitHub: [github.com/Abir-hasan-52](https://github.com/Abir-hasan-52)
 
 ---
 
