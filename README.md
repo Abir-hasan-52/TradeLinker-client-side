@@ -167,7 +167,7 @@ tradelinker-client/
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/yourusername/tradelinker-client.git
+git clone https://github.com/Abir-hasan-52/tradelinker-client.git
 cd tradelinker-client
 ```
 
