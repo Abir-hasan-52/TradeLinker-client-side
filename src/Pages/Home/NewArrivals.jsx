@@ -26,7 +26,10 @@ const NewArrivals = () => {
     <section className="py-12 px-4 md:px-8 lg:px-16 bg-white">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-[#1B365D] mb-6">New Arrivals</h2>
-
+        <p className="mb-8 text-gray-600">
+          Explore our latest products that have just hit the shelves. Fresh styles and innovative designs await you
+            in our new arrivals section.
+        </p>
         {isLoading && <p>Loading...</p>}
         {isError && <p className="text-red-500">{error.message}</p>}
 

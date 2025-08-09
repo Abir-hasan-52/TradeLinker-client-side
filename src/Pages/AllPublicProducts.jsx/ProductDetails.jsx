@@ -82,9 +82,12 @@ const ProductDetails = () => {
             <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               Buy Now
             </button>
-            <button className="px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition">
-              Add to Cart
-            </button>
+            <Link
+              to="/products"
+              className="btn btn-outline btn-sm flex-grow"
+            >
+              Back
+            </Link>
           </div>
         </div>
       </div>

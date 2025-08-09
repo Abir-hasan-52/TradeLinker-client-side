@@ -92,7 +92,18 @@ const AllPublicProducts = () => {
                 </div>
 
                 <p className="text-primary font-bold text-lg mb-4">
-                  ${product.price?.toFixed(2) || "N/A"}
+                  {product.discountPrice ? (
+                    <>
+                      <span className="line-through text-gray-500 mr-2">
+                        ${product.price?.toFixed(2)}
+                      </span>
+                      <span className="text-red-600">
+                        ${product.discountPrice.toFixed(2)}
+                      </span>
+                    </>
+                  ) : (
+                    <>${product.price?.toFixed(2)}</>
+                  )}
                 </p>
 
                 <div className="flex justify-between mt-auto gap-3">
@@ -103,7 +114,7 @@ const AllPublicProducts = () => {
                     Details
                   </Link>
 
-                  <button
+                  {/* <button
                     className="btn btn-primary btn-sm flex-grow"
                     onClick={() => {
                       // Handle buy button click
@@ -111,7 +122,7 @@ const AllPublicProducts = () => {
                     }}
                   >
                     Buy
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
