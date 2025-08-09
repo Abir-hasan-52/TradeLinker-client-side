@@ -10,7 +10,7 @@ const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const accessToken = user?.accessToken;
   const userEmail = user?.email;
-  const axiosInstance = AxiosSecure();
+  const axiosInstance = AxiosSecure(accessToken);
 
   const fetchProducts = async () => {
     const res = await axiosInstance.get(`/my-products?createdBy=${userEmail}`);

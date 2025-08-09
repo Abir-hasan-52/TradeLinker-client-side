@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
+import TradeLinkerLogo from "../Shared/TradeLinkerLogo/TradeLinkerLogo";
 
 const Navbar = () => {
   const { user, SignOutUser } = useContext(AuthContext);
@@ -37,12 +38,12 @@ const Navbar = () => {
 
       <li className="hover:bg-[#4FB3E8]">
         <NavLink
-          to="/All-Products"
+          to="/products"
           className={({ isActive }) =>
             isActive ? "font-bold underline text-[#4FB3E8]" : ""
           }
         >
-          All Products
+          Products
         </NavLink>
       </li>
       <li className="hover:bg-[#4FB3E8]">
@@ -75,6 +76,16 @@ const Navbar = () => {
               }
             >
               Add Product
+            </NavLink>
+          </li>
+          <li className="hover:bg-[#4FB3E8]">
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? "font-bold underline text-[#4FB3E8]" : ""
+              }
+            >
+              DashBoard
             </NavLink>
           </li>
 
@@ -139,12 +150,7 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
-          <Link
-            to="/"
-            className="btn hover:bg-[#4FB3E8] text-white btn-ghost text-lg md:text-xl"
-          >
-            TradeLinks
-          </Link>
+           <TradeLinkerLogo/>
         </div>
 
         {/* Middle Menu (Desktop) */}

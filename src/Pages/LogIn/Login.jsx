@@ -59,7 +59,7 @@ const Login = () => {
           timer: 1500,
         });
         navigate(from, { replace: true });
-        // console.log("User logged in with Google successfully:", user);
+        console.log("User logged in with Google successfully:", user);
         // You can redirect or show a success message here
       })
       .catch((error) => {

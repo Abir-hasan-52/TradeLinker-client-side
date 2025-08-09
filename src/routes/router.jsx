@@ -15,6 +15,8 @@ import CartPage from "../Pages/Cart/CartPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import About from "../Components/Shared/About/About";
 import ContactUs from "../Components/Shared/ContactUs/ContactUs";
+import DashboardLayOut from "../layouts/DashBoardLayout";
+import AllPublicProducts from "../Pages/AllPublicProducts.jsx/AllPublicProducts";
 
 const router = createBrowserRouter([
   {
@@ -23,21 +25,24 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       {
-        path: "/all-products",
-        element: <AllProducts />,
-        // loader: () => fetch("https://trade-linker-server-side.vercel.app/all-products"),
+        path: "/products",
+        element: <AllPublicProducts />,
+      },
+      {
+        path: "/products/:id",
+        element: <ProductsDetails />,
       },
       {
         path: "/category-products",
         element: <TopProducts />,
       },
       {
-        path:'/about',
-        element:<About/>
+        path: "/about",
+        element: <About />,
       },
       {
-        path:'/Contact',
-        element:<ContactUs/>
+        path: "/Contact",
+        element: <ContactUs />,
       },
       {
         path: "/category-products/:categoryName",
@@ -52,8 +57,9 @@ const router = createBrowserRouter([
         ),
 
         loader: ({ params }) =>
-          fetch(`https://trade-linker-server-side.vercel.app/all-products/${params.id}`),
-
+          fetch(
+            `https://trade-linker-server-side.vercel.app/all-products/${params.id}`
+          ),
       },
       {
         path: "/add-products",
@@ -72,7 +78,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://trade-linker-server-side.vercel.app/all-products/${params.id}`),
+          fetch(
+            `https://trade-linker-server-side.vercel.app/all-products/${params.id}`
+          ),
       },
       {
         path: "/my-products",
@@ -82,13 +90,53 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/cart",
-        element: <PrivateRoute><CartPage /></PrivateRoute>,
-      },
+      // {
+      //   path: "/cart",
+      //   element: (
+      //     <PrivateRoute>
+      //       <CartPage />
+      //     </PrivateRoute>
+      //   ),
+      // },
       { path: "login", Component: Login },
       { path: "register", Component: Register },
       { path: "*", Component: Error },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayOut />,
+    children: [
+      {
+        path: "cart",
+        element: (
+          <PrivateRoute>
+            <CartPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-products",
+        element: (
+          <PrivateRoute>
+            <MyProducts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-products",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <AddProducts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-products",
+        element: <AllProducts />,
+        // loader: () => fetch("https://trade-linker-server-side.vercel.app/all-products"),
+      },
     ],
   },
 ]);

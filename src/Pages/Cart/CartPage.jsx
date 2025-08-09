@@ -39,7 +39,7 @@ const CartPage = () => {
 
     if (!confirm.isConfirmed) return;
 
-    await fetch(`https://trade-linker-server-side.vercel.app/increase-quantity/${product.productId}`, {
+    await fetch(`https://trade-linker-server-side.vercel.app/increase-quantity/${product._id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ quantity: product.min_selling_quantity }),
