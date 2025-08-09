@@ -13,6 +13,8 @@ import TopProducts from "../Pages/TopProducts/TopProducts";
 import ProductsDetails from "../Pages/TopProducts/ProductsDetails";
 import CartPage from "../Pages/Cart/CartPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import About from "../Components/Shared/About/About";
+import ContactUs from "../Components/Shared/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/category-products",
         element: <TopProducts />,
+      },
+      {
+        path:'/about',
+        element:<About/>
+      },
+      {
+        path:'/Contact',
+        element:<ContactUs/>
       },
       {
         path: "/category-products/:categoryName",

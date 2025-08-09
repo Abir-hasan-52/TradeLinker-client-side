@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 
@@ -8,6 +8,7 @@ const UpdateProducts = () => {
   const { user } = useContext(AuthContext);
   const UpdateProducts = useLoaderData();
   // console.log(UpdateProducts);
+  const navigate = useNavigate();
   const categories = [
     "Electronics & Gadgets",
     "Home & Kitchen Appliances",
@@ -64,6 +65,7 @@ const UpdateProducts = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/all-products");
       })
       .catch((error) => {
         // console.error("Error updating product:", error);

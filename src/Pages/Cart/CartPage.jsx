@@ -3,6 +3,7 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
 import { BsCart4 } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
+import Loader from "../../Components/Loader/Loader";
 
 const CartPage = () => {
   const { user } = useContext(AuthContext);
@@ -65,9 +66,7 @@ const CartPage = () => {
       </h2>
 
       {loading ? (
-        <div className="flex justify-center items-center h-60">
-          <span className="loading loading-bars loading-lg text-primary"></span>
-        </div>
+         <Loader />
       ) : cartProducts.length === 0 ? (
         <div className="text-center py-10">
           <img
