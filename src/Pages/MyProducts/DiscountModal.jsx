@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AxiosSecure from "../../axiosSecure/AxiosSecure";
+import Swal from "sweetalert2";
 
 const DiscountModal = ({ product, onClose, onSave }) => {
   const [discountPrice, setDiscountPrice] = useState("");
@@ -15,9 +16,14 @@ const DiscountModal = ({ product, onClose, onSave }) => {
         discountNum <= 0 ||
         discountNum >= product.price
       ) {
-        alert(
-          `Please enter a valid discount price less than the original price (${product.price})`
-        );
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Please enter a valid discount price less than the original price (${product.price})`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         return;
       }
 
@@ -25,11 +31,24 @@ const DiscountModal = ({ product, onClose, onSave }) => {
         discountPrice: discountNum,
       });
 
-      alert("Discount updated successfully!");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Discount updated successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       onSave(); // notify parent to refresh or update UI
       onClose(); // close modal
     } catch (err) {
-      alert("Failed to update discount");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Failed to update discount",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       console.error(err);
     }
   };

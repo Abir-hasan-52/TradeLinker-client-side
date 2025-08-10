@@ -65,7 +65,14 @@ const Login = () => {
       .catch((error) => {
         console.error("Error logging in with Google:", error);
         // Handle Google login error, e.g., show an error message
-        alert("Google login failed: " + error.message);
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Google login failed: ${error.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
