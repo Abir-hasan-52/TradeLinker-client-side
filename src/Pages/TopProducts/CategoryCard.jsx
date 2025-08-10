@@ -60,7 +60,7 @@ const CategoryCard = ({ product }) => {
       <div className="mt-4">
         <Link
           to={`/category-products/${encodeURIComponent(category)}/${_id}`}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl transition block text-center"
+          className="btn btn-outline w-full"
         >
           Details
         </Link>

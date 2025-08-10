@@ -64,7 +64,7 @@ const AddProducts = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white shadow-md rounded-xl p-8">
-      <h2 className="text-3xl font-bold text-center text-primary mb-6 underline underline-offset-4">
+      <h2 className="text-3xl font-bold text-center   text-[#1B365D]  mb-6 underline underline-offset-4">
         Add New Product
       </h2>
 
@@ -74,7 +74,9 @@ const AddProducts = () => {
       >
         {/* Image URL */}
         <div className="col-span-1 md:col-span-2">
-          <label className="text-sm font-medium text-gray-700">Product Image URL</label>
+          <label className="text-sm font-medium text-gray-700">
+            Product Image URL
+          </label>
           <input
             type="url"
             name="image"
@@ -85,7 +87,9 @@ const AddProducts = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Product Name</label>
+          <label className="text-sm font-medium text-gray-700">
+            Product Name
+          </label>
           <input
             type="text"
             name="name"
@@ -95,7 +99,9 @@ const AddProducts = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Brand Name</label>
+          <label className="text-sm font-medium text-gray-700">
+            Brand Name
+          </label>
           <input
             type="text"
             name="brand"
@@ -105,7 +111,9 @@ const AddProducts = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Main Quantity</label>
+          <label className="text-sm font-medium text-gray-700">
+            Main Quantity
+          </label>
           <input
             type="number"
             name="quantity"
@@ -116,7 +124,9 @@ const AddProducts = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Minimum Selling Quantity</label>
+          <label className="text-sm font-medium text-gray-700">
+            Minimum Selling Quantity
+          </label>
           <input
             type="number"
             name="minQuantity"
@@ -135,13 +145,17 @@ const AddProducts = () => {
           >
             <option value="">-- Select a category --</option>
             {categories.map((cat, i) => (
-              <option key={i} value={cat}>{cat}</option>
+              <option key={i} value={cat}>
+                {cat}
+              </option>
             ))}
           </select>
         </div>
 
         <div className="col-span-1 md:col-span-2">
-          <label className="text-sm font-medium text-gray-700">Short Description</label>
+          <label className="text-sm font-medium text-gray-700">
+            Short Description
+          </label>
           <textarea
             name="shortDesc"
             rows="3"
@@ -151,7 +165,9 @@ const AddProducts = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Price (USD)</label>
+          <label className="text-sm font-medium text-gray-700">
+            Price (USD)
+          </label>
           <input
             type="number"
             name="price"
@@ -163,7 +179,9 @@ const AddProducts = () => {
         </div>
 
         <div>
-          <label className="text-sm font-medium text-gray-700">Rating (1–5)</label>
+          <label className="text-sm font-medium text-gray-700">
+            Rating (1–5)
+          </label>
           <input
             type="number"
             name="rating"
@@ -176,7 +194,9 @@ const AddProducts = () => {
         </div>
 
         <div className="mt-3 col-span-1 md:col-span-2 flex justify-center">
-          <span className="text-sm font-semibold text-gray-700">HR Information</span>
+          <span className="text-sm font-semibold text-gray-700">
+            HR Information
+          </span>
         </div>
 
         <div>

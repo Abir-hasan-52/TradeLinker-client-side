@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Swal from "sweetalert2";
@@ -8,6 +8,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
    const [showPassword, setShowPassword] = useState(false);
+   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -47,7 +48,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-
+          navigate("/")
         // console.log("User created successfully:", user);
         // You can redirect or show a success message here
       })
