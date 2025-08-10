@@ -41,7 +41,7 @@ const Footer = () => {
     </li>
     <li>
       <NavLink
-        to="/all-products"
+        to="/products"
         className={({ isActive }) =>
           isActive ? "font-bold underline text-[#4FB3E8]" : "hover:text-[#4FB3E8]"
         }
