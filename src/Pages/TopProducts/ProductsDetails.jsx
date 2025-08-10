@@ -5,6 +5,7 @@ import AxiosPublic from "../../axiosPublic/AxiosPublic";
 import Loader from "../../Components/Loader/Loader";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Contexts/AuthContext";
+import { FaArrowLeft } from "react-icons/fa";
 
 const BuyModal = ({ product, onClose, onConfirm }) => {
   const [quantity, setQuantity] = useState(product.min_selling_quantity || 1);
@@ -59,7 +60,8 @@ const BuyModal = ({ product, onClose, onConfirm }) => {
         </p>
 
         <label className="block mb-2 font-medium" htmlFor="quantity">
-          Quantity (min {product.min_selling_quantity}, max {product.main_quantity})
+          Quantity (min {product.min_selling_quantity}, max{" "}
+          {product.main_quantity})
         </label>
         <input
           id="quantity"
@@ -74,7 +76,10 @@ const BuyModal = ({ product, onClose, onConfirm }) => {
         <button
           onClick={handleConfirm}
           className="btn btn-primary w-full"
-          disabled={quantity < product.min_selling_quantity || quantity > product.main_quantity}
+          disabled={
+            quantity < product.min_selling_quantity ||
+            quantity > product.main_quantity
+          }
         >
           Confirm Purchase
         </button>
@@ -88,7 +93,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const axiosPublic = AxiosPublic();
   const queryClient = useQueryClient();
-  const {user}=useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [showBuyModal, setShowBuyModal] = useState(false);
 
@@ -135,7 +140,7 @@ const ProductDetails = () => {
         productId: product._id,
         productName: product.name,
         price: product.discountPrice || product.price,
-        min_buying_quantity:quantity,
+        min_buying_quantity: quantity,
         buyDate: new Date().toISOString(),
         category: product.category,
         description: product.description,
@@ -150,9 +155,12 @@ const ProductDetails = () => {
       }
 
       // Decrease product stock API
-      const decStockRes = await axiosPublic.patch(`/decrease-quantity/${product._id}`, {
-        quantityToBuy: quantity,
-      });
+      const decStockRes = await axiosPublic.patch(
+        `/decrease-quantity/${product._id}`,
+        {
+          quantityToBuy: quantity,
+        }
+      );
 
       if (decStockRes.status !== 200) {
         throw new Error("Failed to decrease product stock");
@@ -164,7 +172,6 @@ const ProductDetails = () => {
       // Refresh product details so stock updates on UI
       queryClient.invalidateQueries(["productDetails", id]);
       queryClient.invalidateQueries(["products"]); // optional: refresh product list too
-
     } catch (err) {
       Swal.fire("Error", err.message || "Something went wrong.", "error");
     }
@@ -175,7 +182,9 @@ const ProductDetails = () => {
   if (isError) {
     return (
       <div className="text-center py-20 text-red-600">
-        <p className="font-semibold">{error?.message || "Failed to load product."}</p>
+        <p className="font-semibold">
+          {error?.message || "Failed to load product."}
+        </p>
       </div>
     );
   }
@@ -207,29 +216,39 @@ const ProductDetails = () => {
 
         <div className="flex-1 space-y-4">
           <h1 className="text-3xl font-bold">{product.name}</h1>
-          <p className="text-gray-600">{product.description || "No description available."}</p>
-
-          <p className="text-lg">
-            <span className="font-semibold">Brand:</span> {product.brandName || "—"}
+          <p className="text-gray-600">
+            {product.description || "No description available."}
           </p>
 
           <p className="text-lg">
-            <span className="font-semibold">Category:</span> {product.category || "—"}
+            <span className="font-semibold">Brand:</span>{" "}
+            {product.brandName || "—"}
           </p>
 
           <p className="text-lg">
-            <span className="font-semibold">Stock:</span> {product.main_quantity ?? "N/A"}
+            <span className="font-semibold">Category:</span>{" "}
+            {product.category || "—"}
           </p>
 
           <p className="text-lg">
-            <span className="font-semibold">Rating:</span> ⭐ {product.rating ?? "N/A"}
+            <span className="font-semibold">Stock:</span>{" "}
+            {product.main_quantity ?? "N/A"}
+          </p>
+
+          <p className="text-lg">
+            <span className="font-semibold">Rating:</span> ⭐{" "}
+            {product.rating ?? "N/A"}
           </p>
 
           <p className="text-primary font-bold text-lg mb-4">
             {product.discountPrice ? (
               <>
-                <span className="line-through text-gray-500 mr-2">${product.price?.toFixed(2)}</span>
-                <span className="text-red-600">${product.discountPrice.toFixed(2)}</span>
+                <span className="line-through text-gray-500 mr-2">
+                  ${product.price?.toFixed(2)}
+                </span>
+                <span className="text-red-600">
+                  ${product.discountPrice.toFixed(2)}
+                </span>
               </>
             ) : (
               <>${product.price?.toFixed(2)}</>
@@ -237,16 +256,19 @@ const ProductDetails = () => {
           </p>
 
           <div className="flex gap-4 mt-6">
+            <Link
+              to="/products"
+              className="btn btn-outline btn-sm flex-grow flex items-center gap-2"
+            >
+              <FaArrowLeft />
+              Back
+            </Link>
             <button
               onClick={openBuyModal}
               className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
             >
               Buy Now
             </button>
-
-            <Link to="/products" className="btn btn-outline btn-sm flex-grow">
-              Back
-            </Link>
           </div>
         </div>
       </div>

@@ -27,8 +27,8 @@ const NewArrivals = () => {
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-[#1B365D] mb-6">New Arrivals</h2>
         <p className="mb-8 text-gray-600">
-          Explore our latest products that have just hit the shelves. Fresh styles and innovative designs await you
-            in our new arrivals section.
+          Explore our latest products that have just hit the shelves. Fresh
+          styles and innovative designs await you in our new arrivals section.
         </p>
         {isLoading && <p>Loading...</p>}
         {isError && <p className="text-red-500">{error.message}</p>}
@@ -50,7 +50,20 @@ const NewArrivals = () => {
                   <h3 className="font-semibold text-lg text-[#1B365D]">
                     {product.name}
                   </h3>
-                  <p className="text-gray-600">${product.price.toFixed(2)}</p>
+                  <p className="text-primary font-bold text-lg mb-4">
+                    {product.discountPrice ? (
+                      <>
+                        <span className="line-through text-gray-500 mr-2">
+                          ${product.price?.toFixed(2)}
+                        </span>
+                        <span className="text-red-600">
+                          ${product.discountPrice.toFixed(2)}
+                        </span>
+                      </>
+                    ) : (
+                      <>${product.price?.toFixed(2)}</>
+                    )}
+                  </p>
                 </div>
               </Link>
             ))}
