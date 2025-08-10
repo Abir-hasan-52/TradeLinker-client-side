@@ -17,6 +17,8 @@ import About from "../Components/Shared/About/About";
 import ContactUs from "../Components/Shared/ContactUs/ContactUs";
 import DashboardLayOut from "../layouts/DashBoardLayout";
 import AllPublicProducts from "../Pages/AllPublicProducts.jsx/AllPublicProducts";
+import DiscountedProducts from "../Pages/Home/DiscountedProducts";
+import NewArrivals from "../Pages/Home/NewArrivals";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "/Contact",
         element: <ContactUs />,
+      },
+      {
+        path: "/discounted",
+        element:<DiscountedProducts/>
+      },
+      {
+        path:"/new-arrivals",
+        element:<NewArrivals/>
       },
       {
         path: "/category-products/:categoryName",
