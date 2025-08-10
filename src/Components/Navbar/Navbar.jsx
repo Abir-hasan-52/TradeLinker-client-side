@@ -65,50 +65,7 @@ const Navbar = () => {
           About Us
         </NavLink>
       </li>
-      {user && (
-        <>
-          <li className="hover:bg-[#4FB3E8]">
-            <NavLink
-              to="/add-products"
-              className={({ isActive }) =>
-                isActive ? "font-bold underline text-[#4FB3E8]" : ""
-              }
-            >
-              Add Product
-            </NavLink>
-          </li>
-          <li className="hover:bg-[#4FB3E8]">
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive ? "font-bold underline text-[#4FB3E8]" : ""
-              }
-            >
-              DashBoard
-            </NavLink>
-          </li>
-          <li className="hover:bg-[#4FB3E8]">
-            <NavLink
-              to="/my-products"
-              className={({ isActive }) =>
-                isActive ? "font-bold underline text-[#4FB3E8]" : ""
-              }
-            >
-              My Product
-            </NavLink>
-          </li>
-          <li className="hover:bg-[#4FB3E8]">
-            <NavLink
-              to="/cart"
-              className={({ isActive }) =>
-                isActive ? "font-bold underline text-[#4FB3E8]" : ""
-              }
-            >
-              Cart
-            </NavLink>
-          </li>
-        </>
-      )}
+     
     </>
   );
 
@@ -163,42 +120,54 @@ const Navbar = () => {
             {/* Right Side */}
             <div className="navbar-end flex items-center gap-2">
               {user ? (
-                <>
-                  <button
-                    onClick={handleSignOut}
-                    className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium"
+                <div className="dropdown dropdown-end">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
                   >
-                    LogOut
-                  </button>
-                  <div
-                    className="tooltip tooltip-bottom"
-                    data-tip={user.displayName}
+                    <div className="w-10 rounded-full">
+                      <img
+                        src={
+                          user.photoURL ||
+                          "https://i.ibb.co.com/Rpp4kRf3/Black-and-White-Simple-The-man-was-silent-Facebook-Profile-Picture.png"
+                        }
+                        alt="User Avatar"
+                      />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                   >
-                    <img
-                      src={
-                        user.photoURL ||
-                        "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-                      }
-                      alt="User Avatar"
-                      className="w-10 h-10 rounded-full"
-                    />
-                  </div>
-                </>
+                    <li className="font-bold text-center">
+                      {user.displayName}
+                    </li>
+                    <li className="text-center text-sm text-gray-500">
+                      {user.email}
+                    </li>
+                    <div className="divider my-1"></div>
+                    <li>
+                      <Link to="/dashboard" className="justify-between">
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleSignOut}
+                        className="text-red-500 font-semibold"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               ) : (
-                <>
-                  <Link
-                    to="/login"
-                    className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium"
-                  >
-                    SignIn
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium"
-                  >
-                    Register
-                  </Link>
-                </>
+                <Link
+                  to="/login"
+                  className="btn bg-[#1B365D] hover:bg-[#007BFF] text-white px-4 py-2 rounded font-medium"
+                >
+                  Sign In
+                </Link>
               )}
             </div>
           </div>

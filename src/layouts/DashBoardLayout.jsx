@@ -1,17 +1,11 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router";
 
-import {
-  FaBoxOpen,
-  FaMoneyCheckAlt,
-  FaUserEdit,
-  FaUserCheck,
-  FaUserClock,
-  FaHandsHelping,
-  FaDonate,
-} from "react-icons/fa";
-import { MdLocalShipping, MdOutlineManageAccounts } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
+import { FaShoppingCart, FaPlusSquare, FaBoxes } from "react-icons/fa";
+import { MdProductionQuantityLimits } from "react-icons/md";
+import { MdLocalShipping, MdOutlineManageAccounts } from "react-icons/md";
+
 // import RoktoShebaLogo from "../Pages/Shared/RoktoShebaLogo";
 import { FaHandHoldingMedical, FaNotesMedical, FaUsers } from "react-icons/fa6";
 // import useUserRole from "../Hooks/useUserRole";
@@ -67,9 +61,8 @@ const DashboardLayOut = () => {
           <div className="mb-6">
             <TradeLinkerLogo />
           </div>
-
           {/* Nav Items */}
-
+          
           <li>
             <NavLink
               to="/dashboard"
@@ -84,7 +77,6 @@ const DashboardLayOut = () => {
               Donor Home
             </NavLink>
           </li>
-
           <li>
             <NavLink
               to="/dashboard/cart"
@@ -94,8 +86,8 @@ const DashboardLayOut = () => {
                   : "hover:bg-red-100 rounded"
               }
             >
-              <FaHandHoldingMedical className="inline-block mr-2 text-lg" />
-               cart
+              <FaShoppingCart className="inline-block mr-2 text-lg" />
+              Cart
             </NavLink>
           </li>
           <li>
@@ -107,8 +99,8 @@ const DashboardLayOut = () => {
                   : "hover:bg-red-100 rounded"
               }
             >
-              <FaHandHoldingMedical className="inline-block mr-2 text-lg" />
-               My Products
+              <MdProductionQuantityLimits className="inline-block mr-2 text-lg" />
+              My Products
             </NavLink>
           </li>
           <li>
@@ -120,8 +112,8 @@ const DashboardLayOut = () => {
                   : "hover:bg-red-100 rounded"
               }
             >
-              <FaHandHoldingMedical className="inline-block mr-2 text-lg" />
-               Add Products
+              <FaPlusSquare className="inline-block mr-2 text-lg" />
+              Add Products
             </NavLink>
           </li>
           <li>
@@ -133,8 +125,8 @@ const DashboardLayOut = () => {
                   : "hover:bg-red-100 rounded"
               }
             >
-              <FaHandHoldingMedical className="inline-block mr-2 text-lg" />
-               ALL Products
+              <FaBoxes className="inline-block mr-2 text-lg" />
+              All Products
             </NavLink>
           </li>
         </ul>
