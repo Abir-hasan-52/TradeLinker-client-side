@@ -3,11 +3,11 @@ import React from "react";
 const FeaturedBrands = () => {
   return (
     <div className="bg-white py-12 px-4 md:px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto ">
         <h2 className="text-3xl font-bold text-[#1B365D] mb-6">
           Top Featured Brands
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-10">
+        <p className="text-gray-600 max-w-2xl   mb-10">
           Our marketplace features top-rated global brands trusted by businesses
           around the world.
         </p>
