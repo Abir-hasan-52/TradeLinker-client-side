@@ -29,7 +29,7 @@ const MyProductCard = ({ product, onDiscountUpdate }) => {
 
   return (
     <>
-      <div className="card md:card-side bg-base-100 border shadow-sm hover:shadow-md transition duration-200">
+      <div className="card md:card-side bg-base-100  shadow-md hover:shadow-xl transition duration-200">
         <figure className="md:w-48 h-48 p-4">
           <img
             src={image}

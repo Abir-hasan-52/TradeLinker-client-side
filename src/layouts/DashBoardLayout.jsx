@@ -74,7 +74,7 @@ const DashboardLayOut = () => {
               }
             >
               <AiFillHome className="inline-block mr-2 text-lg" />
-              Donor Home
+                Home
             </NavLink>
           </li>
           <li>
@@ -126,7 +126,7 @@ const DashboardLayOut = () => {
               }
             >
               <FaBoxes className="inline-block mr-2 text-lg" />
-              All Products
+              Update Products
             </NavLink>
           </li>
         </ul>

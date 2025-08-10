@@ -81,7 +81,7 @@ const CartPage = () => {
           {cartProducts.map((product) => (
             <div
               key={product._id}
-              className="card bg-base-100 shadow-md hover:shadow-xl transition border"
+              className="card bg-base-100 shadow-md hover:shadow-xl transition "
             >
               <figure className="h-48 overflow-hidden">
                 <img

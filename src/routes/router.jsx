@@ -19,6 +19,7 @@ import DashboardLayOut from "../layouts/DashBoardLayout";
 import AllPublicProducts from "../Pages/AllPublicProducts.jsx/AllPublicProducts";
 import DiscountedProducts from "../Pages/Home/DiscountedProducts";
 import NewArrivals from "../Pages/Home/NewArrivals";
+import DashboardHome from "../Components/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -48,11 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/discounted",
-        element:<DiscountedProducts/>
+        element: <DiscountedProducts />,
       },
       {
-        path:"/new-arrivals",
-        element:<NewArrivals/>
+        path: "/new-arrivals",
+        element: <NewArrivals />,
       },
       {
         path: "/category-products/:categoryName",
@@ -117,6 +118,12 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayOut />,
     children: [
+      {
+         index: true,
+        element:<DashboardHome/>
+
+      },
+
       {
         path: "cart",
         element: (
