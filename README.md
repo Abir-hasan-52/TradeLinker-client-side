@@ -307,7 +307,7 @@ npm run build
 
 - **Live Site:** [https://trade-linker-60a0f.web.app/](https://trade-linker-60a0f.web.app/)
 - **Client Repository:** [GitHub Client Repo](https://github.com/Abir-hasan-52/tradelinker-client-side)
-- **Server Repository:** [GitHub Server Repo](https://github.com/Abir-hasan-52/tradelinker-server-side)
+- **Server Repository:** [GitHub Server Repo](https://github.com/Abir-hasan-52/tradelinker-server-side-)
 
 ---
 
